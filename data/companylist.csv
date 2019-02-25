@@ -1,0 +1,46 @@
+Symbol,Sector,Industry
+void,void,void
+SIVC,Basic Materials,Chemicals
+SAFC,Financials,Financial Services
+BOAB,Financials,Banks
+BOABF,Financials,Banks
+BOAC,Financials,Banks
+BOAM,Financials,Banks
+BOAN,Financials,Banks
+BOAS,Financials,Banks
+BNBC,Industrials,Support Services
+BICC,Financials,Banks
+SDSC,Industrials,Industrial Transportation
+CFAC,Consumer Services,Travel & Leisure
+CIEC,Utilities,Electricity
+CBIBF,Financials,Banks
+SEMC,Industrials,General Industrials
+ECOC,Financials,Banks
+ETIT,Financials,Banks
+FTSC,Industrials,General Industrials
+SVOC,Industrials,Industrial Transportation
+NEIC,Consumer Services,General Retailers
+NTLC,Consumer Goods,Food Producers
+NSBC,Financials,Banks
+ONTBF,Telecommunications,Fixed Line Telecommunications
+PALC,Consumer Goods,Food Producers
+SPHC,Consumer Goods,Automobiles & Parts
+ABJC,Industrials,Industrial Transportation
+STAC,Industrials,Construction & Materials
+SGBC,Financials,Banks
+CABC,Industrials,Electronic & Electrical Equipment
+SICC,Consumer Goods,Food Producers
+STBC,Consumer Goods,Tobacco
+SMBC,Industrials,Construction & Materials
+SIBC,Financials,Banks
+SDCC,Utilities,Gas, Water & Multi-utilities
+SOGC,Consumer Goods,Food Producers
+SLBC,Consumer Goods,Beverages
+SNTS,Telecommunications,Fixed Line Telecommunications
+SCRC,Consumer Goods,Food Producers
+TTLC,Oil & Gas,Oil & Gas Producers
+TTLS,Oil & Gas,Oil & Gas Producers
+PRSC,Consumer Services,General Retailers
+UNLC,Consumer Goods,Personal Goods
+UNXC,Consumer Goods,Personal Goods
+SHEC,Oil & Gas,Oil & Gas Producers

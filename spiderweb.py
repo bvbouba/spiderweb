@@ -1,32 +1,41 @@
-import globals
-from lib.getStockInfo import getStockPrice,getLastDay,getMarketCap,getChartData,getCompsData
-from lib.getFinStat import checkSymbol,updateFinData,getKPI
+import lib.globals as globals
+from lib.getStockInfo import getStockPrice,getLastDay,getMarketCap,getChartData,getCompsData,get1YearReturn,getDividendInfo,getSplitInfo,getElementData
+from lib.getFinStat import getCompanyIdentity,updateFinData,getKPI
 
 
-#updateFinData()
+
 
 globals.initialize()
 
-q=0
-while q==0:
-    #ticker = input("Quote search:")
-    ticker = "PALC"
-    sector = checkSymbol(ticker)
-    if sector == None:
-        print("Quote is not valid")
+#updateFinData()
+#getDividendInfo()
+#getElementData()
+#getSplitInfo()
+
+symbol= ""
+while symbol=="":
+    ticker = input("Quote search:")
+    results = getCompanyIdentity(ticker)
+    if results!= None:
+        symbol=results[0]
+        print(results)
     else:
-        q=1
+        print("Quote is not valid")
+
+
+quit()
 
 
 getChartData(ticker)
 
-quit()
-stock = getStockPrice(ticker,sector)
-stockTicker = stock[0]
-stockPrice = stock[1]
-priceChange = stock[2]
 
-print("Ticker:"+stockTicker)
+stock = getStockPrice(ticker)
+stockPrice = stock[0]
+priceChange = stock[1]
+
+oneYearReturn = get1YearReturn(stockPrice)
+
+print("Ticker:"+ticker)
 print("Current Price:"+stockPrice)
 print("Change in Price:"+priceChange)
 
@@ -48,7 +57,6 @@ capData= getMarketCap(ticker)
 marketCap = capData[0]
 MarketCapChange = capData[1]
 shares = capData[2]
-
 print("Market Cap:"+marketCap)
 print("Change in MarkCap:"+MarketCapChange)
 
@@ -63,6 +71,7 @@ fiscYear = kpi[4]
 print("-----------Key Stat----")
 print("EPS:"+eps)
 print("P/E Ratio:"+peRatio)
+print("1 Year return:"+oneYearReturn)
 print("Shares Outstanding:"+shares)
 print("Price to Book Ratio:"+ptobookRatio)
 print("Price to Sales Ratio:"+ptoSales)
