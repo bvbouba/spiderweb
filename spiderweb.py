@@ -1,13 +1,14 @@
 import lib.globals as globals
-from lib.getStockInfo import getStockPrice,getLastDay,getMarketCap,getChartData,getCompsData,get1YearReturn,getDividendInfo,getSplitInfo,getElementData
-from lib.getFinStat import getCompanyIdentity,updateFinData,getKPI
+from lib.getStockInfo import (getStockPrice,getLastDay,getMarketCap,getChartData,getCompsData,get1YearReturn,
+                              getDividendInfo,getSplitInfo,getElementData,getMinMaxForOneYear,getDividendPaid)
+from lib.getFinStat import getCompanyIdentity,updateFinancialStatement,getKPI
 
 
 
 
 globals.initialize()
 
-#updateFinData()
+#updateFinancialStatement()
 #getDividendInfo()
 #getElementData()
 #getSplitInfo()
@@ -18,12 +19,9 @@ while symbol=="":
     results = getCompanyIdentity(ticker)
     if results!= None:
         symbol=results[0]
-        print(results)
+        sector=results[1]
     else:
         print("Quote is not valid")
-
-
-quit()
 
 
 getChartData(ticker)
@@ -37,7 +35,7 @@ oneYearReturn = get1YearReturn(stockPrice)
 
 print("Ticker:"+ticker)
 print("Current Price:"+stockPrice)
-print("Change in Price:"+priceChange)
+print("Change in Price (%):"+priceChange)
 
 lastTrend = getLastDay(ticker)
 
@@ -52,16 +50,22 @@ print("Volume:"+stockVolume)
 print("Open Price:"+openPrice)
 print("Prev Close:"+prevClose)
 
+price_range = getMinMaxForOneYear()
+
+price_max = price_range[0]
+price_min = price_range[1]
+print("52 week range: ["+str(price_min)+" - "+str(price_max)+"]")
+
 capData= getMarketCap(ticker)
 
 marketCap = capData[0]
-MarketCapChange = capData[1]
-shares = capData[2]
-print("Market Cap:"+marketCap)
-print("Change in MarkCap:"+MarketCapChange)
+shares = capData[1]
+print("Market Capital:"+marketCap)
+
 
 #getChartData(ticker)
 kpi = getKPI(ticker,float(stockPrice),float(shares))
+dividend = getDividendPaid(ticker)
 
 eps = kpi[0]
 peRatio = kpi[1]
@@ -71,13 +75,18 @@ fiscYear = kpi[4]
 print("-----------Key Stat----")
 print("EPS:"+eps)
 print("P/E Ratio:"+peRatio)
-print("1 Year return:"+oneYearReturn)
+print("1 Year return (%):"+oneYearReturn)
+
+
 print("Shares Outstanding:"+shares)
 print("Price to Book Ratio:"+ptobookRatio)
 print("Price to Sales Ratio:"+ptoSales)
+print("Dividend Yield (%):"+str(dividend[2]))
+print("Last Dividend Reported ("+str(dividend[0])+"): "+str(dividend[1]))
+
 print("Earnings Announcement for fiscal period ending in "+fiscYear)
 
-print("-----------COMPARE 1 DAY performance----")
+print("-----------COMPARE 1 DAY performance (%)----")
 
 compsData = getCompsData(sector,globals.market_indice)
 sector_change = compsData[0]
